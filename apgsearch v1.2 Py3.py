@@ -4033,7 +4033,6 @@ class Soup:
             os.makedirs(progresspath)
 
         filename = progresspath + "search_" + md5root + ".txt"
-        g.warn(filename)
         try:
             f = open(filename, 'w')
             f.write(results)
