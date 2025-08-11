@@ -80,6 +80,7 @@ You can stack the prefix - e.g 'iii1x256' will replace each cell with a 8x8 bloc
 - New symmetries - different grid sizes taken from wwei47's hacked version, inflated symmetries added by me (PK22).
 - Pseudo-object symmetries - pseudo still lifes and oscillators can be counted as 'true' objects when uploading to separate censuses.
 - Program-side object verification - erroneous objects were uploaded to Pseudo_C1_Test in one case, so the newest version runs certain objects through one period and throws them out if they fail verification.
+- Gutter symmetries - Gutter_D2_+1_Test, Gutter_D4_+1_Test, Gutter_D4_+2_Test, and Gutter_D8_1_Test have gutters between sections of soup. If you want to census pseudo-objects, replace 'Gutter' with 'PseudoGutter'. You can also search D2_+1_gO1s2, which is avaliable in other versions of apgsearch.
 - Haul verification removed in order to prevent wrongful rejection of valid hauls.
 ### Uploading of results
 You can see the results on Catagolue - if searching <rule> and <symmetry>, then you can find them at https://catagolue.hatsya.com/census/<rule>/<symmetry> - make sure that <rule> is in the form b***s***, replacing the asterisks with the birth and survival conditions of your rule.
@@ -89,3 +90,11 @@ More information can be found on LifeWiki.
 - Information about apgsearch - https://conwaylife.com/wiki/Apgsearch
 - Information about contributing to Catagolue - https://conwaylife.com/wiki/Tutorials/Contributing_to_Catagolue
 - My user page with a copy of the code and bug reports - https://conwaylife.com/wiki/User:PK22/apgsearch_Py3
+### Credits
+Thank you to:
+- Adam P. Goucher for the original script, and for creating many of the features in later versions that I recreated here.
+- wwei47 for providing additional symmetries in their hacked version of apgsearch, which were used here.
+- praosylen for providing the code I used to implement support for INT rules.
+- yujh for providing inspiration for pseudo-object symmetries.
+- Resu for providing feature suggestions, such as inflated symmetries.
+- rabbit, Resu, and yujh for reporting bugs.
