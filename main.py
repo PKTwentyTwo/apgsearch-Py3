@@ -99,10 +99,6 @@ import hashlib
 import datetime
 import os
 import urllib.request, urllib.error, urllib.parse
-import requests
-import json
-import ast
-import csv
 def get_server_address():
     # Should be 'https://catagolue.hatsya.com' for the released version,
     # and 'https://localhost:8080' for the development version:    
@@ -4445,3 +4441,4 @@ def symmetry_test():
 apg_main()
 #I have removed verification to prevent the client from wrongly rejecting good hauls.
 g.show('Done')
+
