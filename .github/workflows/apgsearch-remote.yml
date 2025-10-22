@@ -1,0 +1,56 @@
+name: apgsearch-remote
+
+on:
+  workflow_dispatch: # Allow manual trigger
+    inputs:
+      rule:
+        description: 'Rulestring'
+        required: true
+      symmetry:
+        description: 'Symmetry of soup'
+        required: true
+        default: "C1"
+      soups:
+        description: 'Number of soups per haul'
+        required: true
+      key:
+        description: 'Payosha256 key'
+        required: true
+
+jobs:
+  apgsearch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Update and install dependencies
+        run: |
+          sudo apt update
+          sudo apt upgrade -y
+          sudo apt-get install -y build-essential git
+
+      - name: Cache apgmera build
+        uses: actions/cache@v4
+        with:
+          path: ./apgmera
+          key: ${{ runner.os }}-apgmera-${{ hashFiles('**/recompile.sh') }}
+          restore-keys: |
+            ${{ runner.os }}-apgmera-
+
+      - name: Clone apgmera (if not cached)
+        run: |
+          if [ ! -d "./apgmera/.git" ]; then
+            git clone https://gitlab.com/apgoucher/apgmera.git
+          fi
+
+      - name: Compile apgmera
+        run: |
+          cd apgmera
+          ./recompile.sh --rule "${{ github.event.inputs.rule }}" --symmetries "${{ github.event.inputs.symmetry }}"
+
+      - name: Run apgluxe
+        run: |
+          cd apgmera
+          ./apgluxe -n ${{ github.event.inputs.soups }} -k ${{ github.event.inputs.key }}
